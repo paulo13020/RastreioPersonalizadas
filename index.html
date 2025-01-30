@@ -1,49 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Pedidos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             fetch("https://api.dovale.com.br/Personalizadas/Listar")
                 .then(response => response.json())
                 .then(data => {
-                    const tbody = document.getElementById("tabela-pedidos");
-                    tbody.innerHTML = ""; // Limpa a tabela antes de adicionar os dados
-                    
-                    if (data.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="10" class="text-center text-muted" style="padding: 20px;">Sem registros disponíveis.</td></tr>`;
-                    } else {
+                    console.log("Dados recebidos:", data); // Log para verificar os dados da API
+                    let tbody = document.querySelector("#tabela-pedidos tbody");
+                    tbody.innerHTML = "";
+                    if (data.length > 0) {
                         data.forEach(item => {
-                            const row = `<tr>
-                                <td>${item.PDV_NUMERO ?? ''}</td>
-                                <td>${item.REP_NOME ?? ''}</td>
-                                <td>${item.PDV_OBS1 ?? ''}</td>
-                                <td>${item.PDV_OBS2 ?? ''}</td>
-                                <td>${item.QUANTIDADE_YALE ?? ''}</td>
-                                <td>${item.QUANTIDADE_TETRA ?? ''}</td>
-                                <td>${item.Usuario ?? ''}</td>
-                                <td>${item.Data ? new Date(item.Data).toLocaleString('pt-BR') : ''}</td>
-                                <td>${item.Status_ID}</td>
-                                <td>
-                                    <a href="#" class="btn btn-sm" style="background-color:#ffb2c4; color: #060203; border-radius: 6px;">Visualizar</a>
-                                </td>
-                            </tr>`;
+                            let row = `
+                                <tr style="background-color: #ffffff; border-bottom: 1px solid #dee2e6;">
+                                    <td>${item.pdV_NUMERO || ''}</td>
+                                    <td>${item.reP_NOME || ''}</td>
+                                    <td>${item.pdV_OBS1 || ''}</td>
+                                    <td>${item.modelo || ''}</td>
+                                    <td>${item.quantidadE_YALE || ''}</td>
+                                    <td>${item.quantidadE_TETRA || ''}</td>
+                                    <td>${item.usuario || ''}</td>
+                                    <td>${item.data ? new Date(item.data).toLocaleString() : ''}</td>
+                                    <td>${item.status || ''}</td>                                    
+                                </tr>`;
                             tbody.innerHTML += row;
                         });
+                    } else {
+                        tbody.innerHTML = '<tr><td colspan="10" class="text-center text-muted" style="padding: 20px;">Sem registros disponíveis.</td></tr>';
                     }
                 })
-                .catch(error => console.error("Erro ao buscar dados da API:", error));
+                .catch(error => console.error("Erro ao buscar os dados:", error));
         });
     </script>
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #6c757d;">Lista de Pedidos</h2>        
+        <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #6c757d;">Lista de Pedidos</h2>
+        
         <div class="table-responsive">
-            <table class="table" style="border: 1px solid #dee2e6;">
+            <table id="tabela-pedidos" class="table" style="border: 1px solid #dee2e6;">
                 <thead style="background-color: #f8f9fa; color: #495057;">
                     <tr>
                         <th>Número do Pedido</th>
@@ -54,14 +53,11 @@
                         <th>Quantidade Tetra</th>
                         <th>Usuário</th>
                         <th>Data da Última Atualização</th>
-                        <th>Status</th>
-                        <th>Ações</th>
+                        <th>Status</th>                        
                     </tr>
                 </thead>
-                <tbody id="tabela-pedidos">
-                    <tr>
-                        <td colspan="10" class="text-center text-muted" style="padding: 20px;">Carregando...</td>
-                    </tr>
+                <tbody>
+                    <tr><td colspan="10" class="text-center text-muted" style="padding: 20px;">Carregando...</td></tr>
                 </tbody>
             </table>
         </div>
