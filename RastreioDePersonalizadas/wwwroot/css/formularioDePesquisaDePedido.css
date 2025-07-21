@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    overflow-x: hidden; /* Remove o scroll horizontal */
+}
+
+.form-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    box-sizing: border-box; /* Garante que padding não ultrapasse os limites */
+}
+
+    .form-container label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    .form-container input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        box-sizing: border-box; /* Evita estouros */
+    }
+
+    .form-container .radio-group {
+        margin-bottom: 20px;
+    }
+
+        .form-container .radio-group label {
+            display: inline-block;
+            margin-right: 20px;
+            white-space: nowrap; /* Impede quebra em textos longos */
+        }
+
+    .form-container .tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .form-container .tooltip .tooltip-text {
+            visibility: hidden;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .form-container .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    .form-container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }

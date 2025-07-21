@@ -1,0 +1,225 @@
+﻿@using RastreioDePersonalizadas.Enumeraveis
+@model RastreioDePersonalizadas.Entidades.PedidoEntidade
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #6c757d;">Detalhes do Pedido</h2>
+                <div class="card-body">
+                    <form asp-action="Alterar">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="row mb-3">                            
+                            <input hidden asp-for="ID" class="form-control" readonly style="border-radius: 8px;" />                            
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Número do Pedido</label>
+                                    <input asp-for="PDV_NUMERO" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Representante</label>
+                                    <input asp-for="REP_NOME" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Modelo da Chave</label>
+                                    <input asp-for="Modelo" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Filial</label>
+                                    <input asp-for="Filial" class="form-control" readonly
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Responsável</label>
+                                    <input asp-for="Responsavel" class="form-control" readonly
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Observação</label>
+                                    <input asp-for="PDV_OBS1" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Observação 2</label>
+                                    <input asp-for="PDV_OBS2" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Observação 3</label>
+                                    <input asp-for="PDV_OBS3" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Observação 4</label>
+                                    <input asp-for="PDV_OBS4" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Quantidade Yale</label>
+                                    <input asp-for="QUANTIDADE_YALE" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Quantidade Tetra</label>
+                                    <input asp-for="QUANTIDADE_TETRA" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Usuário</label>
+                                    <input asp-for="Usuario" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Data</label>
+                                    <input asp-for="Data" class="form-control" type="datetime" readonly
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Nota Fiscal</label>
+                                    <input asp-for="Nota_Fiscal" type="number" class="form-control"
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" required />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Volume</label>
+                                    <input type="number" asp-for="Volume" class="form-control"
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" required />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Romaneio</label>
+                                    <input type="number" asp-for="Romaneio" class="form-control"
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Itens do Pedido</label>
+                                    <div class="p-3" style="border-radius: 8px; border: 1px solid #ced4da; background-color: white;">
+                                        @if (Model.Itens != null && Model.Itens.Any())
+                                        {
+                                            <div class="table-responsive">
+                                                <table class="table table-sm mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 50%; border-top: none;">Produto</th>
+                                                            <th style="width: 50%; border-top: none; text-align: right;">Quantidade</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @for (int i = 0; i < Model.Itens.Count; i++)
+                                                        {
+                                                            <tr>
+                                                                <td style="border-top: 1px solid #f1f3f5;">
+                                                                    <input asp-for="@Model.Itens[i].CodigoProduto" type="hidden" />
+                                                                    @Model.Itens[i].CodigoProduto
+                                                                </td>
+                                                                <td style="border-top: 1px solid #f1f3f5; text-align: right;">
+                                                                    <input asp-for="@Model.Itens[i].Quantidade" type="hidden" />
+                                                                    @Model.Itens[i].Quantidade
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="mt-2" style="font-size: 0.8rem; color: #6c757d;">
+                                                Total: @Model.Itens.Count itens |
+                                                Quantidade total: @Model.Itens.Sum(i => i.Quantidade).ToString("N2")
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="color: #6c757d; font-style: italic;">
+                                                Nenhum item encontrado neste pedido
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="control-label">Status</label>
+                            @foreach (var status in ViewBag.Status)
+                            {
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           id="checkbox_@status.ID"
+                                           name="SelectedStatuses"
+                                           value="@status.ID"
+                                    @(status.Marcado ? "checked disabled" : "") />
+                                    <label class="form-check-label" for="checkbox_@status.ID">
+                                        @status.Nome
+                                    </label>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="form-group text-end">
+                            <input type="submit" value="Enviar Pedido" class="btn" style="background-color: #e1f5fe; color: #039be5; border-radius: 8px; padding: 10px 20px; font-weight: 500;" />
+                        </div>
+                    </form>
+                </div>
+                @if (TempData["Erro"] != null)
+                {
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </svg>
+                        <div>
+                            @TempData["Erro"].
+                        </div>
+                    </div>
+                }
+                <div class="card-footer text-center">
+                    <a asp-action="Listar" class="btn btn-link" style="text-decoration: none; color: #039be5;">Voltar à Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

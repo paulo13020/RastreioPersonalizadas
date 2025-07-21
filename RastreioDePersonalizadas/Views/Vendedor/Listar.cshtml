@@ -1,0 +1,162 @@
+﻿@using RastreioDePersonalizadas.Enumeraveis
+@model RastreioDePersonalizadas.Entidades.PedidoEntidade
+@using System.Linq
+<link href="~/css/formulariodeedicaodepedidovendedor.css" rel="stylesheet" />
+
+@{
+    var statusList = ViewBag.Status as List<dynamic>;
+}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #6c757d;">Detalhes do Pedido</h2>
+                <div class="card-body">
+                    <form asp-action="Alterar">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <div class="row mb-3">
+                            <input hidden asp-for="ID" class="form-control" readonly style="border-radius: 8px;" />
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Número do Pedido</label>
+                                    <input asp-for="PDV_NUMERO" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Representante</label>
+                                    <input asp-for="REP_NOME" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Modelo</label>
+                                    <input asp-for="Modelo" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Filial</label>
+                                    <input asp-for="Filial" class="form-control" readonly
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Responsável</label>
+                                    <input asp-for="Responsavel" class="form-control" readonly
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Observação</label>
+                                    <input asp-for="PDV_OBS1" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Observação Secundária</label>
+                                    <input asp-for="PDV_OBS2" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Quantidade Yale</label>
+                                    <input asp-for="QUANTIDADE_YALE" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Quantidade Tetra</label>
+                                    <input asp-for="QUANTIDADE_TETRA" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-weight: 500; color: #495057;">Usuário</label>
+                                    <input asp-for="Usuario" class="form-control" readonly style="border-radius: 8px;" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Data</label>
+                                    <input asp-for="Data" class="form-control" type="datetime" readonly
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Nota Fiscal</label>
+                                    <input asp-for="Nota_Fiscal" type="number" class="form-control"
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" required readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Volume</label>
+                                    <input type="number" asp-for="Volume" class="form-control"
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" required  readonly/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label" style="font-weight: 500; color: #495057;">Romaneio</label>
+                                    <input type="number" asp-for="Romaneio" class="form-control"
+                                           style="border-radius: 8px; border: 1px solid #ced4da;" required  readonly/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+<br/>
+<div class="status-tracker">
+    <div class="status-container">
+        @foreach (var status in ViewBag.Status)
+        {
+            <div class="status-item @(status.Marcado ? "completed" : "")">
+                <!-- Círculo maior em cima do texto -->
+                <div class="status-circle">
+                    <i class="fa @(status.Marcado ? "fa-check" : "fa-circle")"></i>
+                </div>
+
+                <!-- Texto abaixo da bolinha -->
+                <div class="status-label">@status.Nome</div>
+
+                <!-- Hora da última alteração do status-->
+                <div class="status-label">@status.StatusData</div>
+            </div>
+
+            <!-- Linha de progresso contínua entre as bolinhas (não exibida para o último status) -->
+            @if (!status.IsLast)
+            {
+                <div class="status-line"></div>
+            }
+        }
+    </div>
+</div>
+<br />
+<div class="card-footer text-center">
+    <a asp-action="Index" class="btn btn-link" style="text-decoration: none; color: #039be5;">Voltar à Lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

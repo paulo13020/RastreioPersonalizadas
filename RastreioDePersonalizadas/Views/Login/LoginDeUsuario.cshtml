@@ -1,0 +1,35 @@
+﻿@model RastreioDePersonalizadas.Entidades.LoginDeUsuarioEntidade
+
+<div class="container mt-5 d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px; border-radius: 10px;">
+        <h3 class="text-center mb-4" style="color: #333;">Login AD</h3>
+        <form asp-action="LoginDeUsuario">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <!-- Campo de Usuário -->
+            <div class="form-group mb-3">
+                <label asp-for="Usuario" class="form-label" style="color: #555;">Usuário</label>
+                <input asp-for="Usuario" class="form-control shadow-sm" placeholder="Digite seu usuário" style="border-radius: 8px;" />
+                <span asp-validation-for="Usuario" class="text-danger"></span>
+            </div>
+            <!-- Campo de Senha -->
+            <div class="form-group mb-4">
+                <label asp-for="Senha" class="form-label" style="color: #555;">Senha</label>
+                <input asp-for="Senha" type="password" class="form-control shadow-sm" placeholder="Digite sua senha" style="border-radius: 8px;" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            <!-- Botão de Login -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary shadow-sm" style="border-radius: 8px;">Entrar</button>
+            </div>
+        </form>        
+    </div>
+</div>
+@if(TempData["Erro"] != null){
+    <div>
+        <div class="alert alert-danger">@TempData["Erro"]</div>
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

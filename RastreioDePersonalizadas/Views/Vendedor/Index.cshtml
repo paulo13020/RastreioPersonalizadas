@@ -1,0 +1,167 @@
+﻿@model IEnumerable<RastreioDePersonalizadas.ObjetoDeTransferencia.PedidoOTE>
+
+<div class="container-fluid mt-5">
+
+    <!-- Título -->
+    <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #5a5a5a;">Lista de Pedidos</h2>
+
+    <!-- Tabela com rolagem -->
+    <div class="table-responsive" style="max-height: 500px; overflow-y: auto; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 10px; background-color: #fdfdfd; padding: 10px;">
+        <table class="table table-hover table-striped" style="width: 100%; min-width: 1500px; border-radius: 10px; overflow: hidden;">
+            <thead style="background-color: #e3f2fd; color: #333;">
+                <tr>
+                    <th>Nº do Pedido</th>
+                    <th>Representante</th>
+                    <th>Obs 1</th>
+                    <th>Obs 2</th>
+                    <th>Obs 3</th>
+                    <th>Obs 4</th>
+                    <th>Qtd Yale</th>
+                    <th>Qtd Tetra</th>
+                    <th>Usuário</th>
+                    <th>Data Atualização</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.PDV_NUMERO)</td>
+                            <td>@Html.DisplayFor(modelItem => item.REP_NOME)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PDV_OBS1)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PDV_OBS2)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PDV_OBS3)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PDV_OBS4)</td>
+                            <td>@Html.DisplayFor(modelItem => item.QUANTIDADE_YALE)</td>
+                            <td>@Html.DisplayFor(modelItem => item.QUANTIDADE_TETRA)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Usuario)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Data)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                            <td>
+                                <a asp-action="Listar" asp-route-id="@item.ID" class="btn btn-sm" style="border-radius: 6px; background-color: #4fc3f7; color: white;">
+                                    Visualizar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="12" class="text-center text-muted" style="padding: 20px;">
+                            Sem registros disponíveis.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<button type="button" class="btn"
+        style="position: fixed; bottom: 90px; right: 30px; z-index: 99;
+               background-color: #4fc3f7; color: white;
+               border-radius: 50%; padding: 15px;
+               box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+               font-size: 20px;"
+        data-bs-toggle="modal" data-bs-target="#modalPesquisa"
+        title="Pesquisar Pedido">
+    🔍
+</button>
+
+
+<!-- Modal de Pesquisa -->
+<div class="modal fade" id="modalPesquisa" tabindex="-1" aria-labelledby="modalPesquisaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-radius: 10px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPesquisaLabel">Pesquisar Pedido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <form method="get" asp-action="SelecionarPedido" asp-controller="Vendedor">
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select" id="status" name="status">
+                            <option selected disabled>Seleciona um Status</option>
+                            <option value="PEDIDO RECEBIDO">Pedido Recebido</option>
+                            <option value="ENVIADO P/ SJC">Enviado para SJC</option>
+                            <option value="ENVIADO P/ SALES">Enviado para Sales</option>
+                            <option value="RECEBIDO PELO SALES">Recebido pelo Sales</option>
+                            <option value="RECEBIDO POR MG">Recebido por MG</option>
+                            <option value="PERSO EM ANDAMENTO">Perso em Andamento</option>
+                            <option value="PERSO FINALIZADA">Perso Finalizada</option>
+                            <option value="PEDIDO DEVOLVIDO A SJC">Pedido Devolvido a SJC</option>
+                            <option value="ENVIADO P/ MG">Pedido Enviado para MG</option>
+                            <option value="RECEBIDO SJC">Pedido Recebido SJC</option>
+                            <option value="PEDIDO CONFERIDO">Pedido Conferido</option>
+                            <option value="PEDIDO FINALIZADO">Pedido Finalizado</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="representante" class="form-label">Representante</label>
+                        <input type="text" class="form-control" id="representante" name="representante" placeholder="Digite o nome do representante">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="numeroPedido" class="form-label">Número do Pedido</label>
+                        <input type="number" class="form-control" id="numeroPedido" name="numeroPedido" placeholder="Digite o número do pedido">
+                    </div>
+                    <div class="mb-3">
+                        <label for="notaFiscal" class="form-label">Nota Fiscal</label>
+                        <input type="number" class="form-control" id="notaFiscal" name="notaFiscal" placeholder="Digite o número da nota fiscal do pedido">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="numeroRomaneio" class="form-label">Número do Romaneio</label>
+                        <input type="number" class="form-control" id="numeroRomaneio" name="numeroRomaneio" placeholder="Digite o número do romaneio do pedido">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataInicio" class="form-label">Data Inicio</label>
+                        <input type="date" class="form-control" id="dataInicio" name="dataInicio">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataFim" class="form-label">Data Final</label>
+                        <input type="date" class="form-control" id="dataFim" name="dataFim">
+                    </div>
+
+                    <!-- Pode adicionar mais campos conforme a necessidade -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Pesquisar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botão de rolagem para o topo -->
+<button onclick="topFunction()" id="btnTop" title="Voltar ao topo"
+        style="display:none; position:fixed; bottom:30px; right:30px; z-index:99; font-size:18px; border:none; outline:none; background-color:#4fc3f7; color:white; cursor:pointer; padding:15px; border-radius:50%; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+    ↑
+</button>
+
+<script>
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        const btn = document.getElementById("btnTop");
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
